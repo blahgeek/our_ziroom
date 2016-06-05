@@ -24,6 +24,7 @@ class ZiroomSpider(scrapy.Spider):
     def _parse_page(self, response):
         for room in response.css('#houseList > .clearfix:not(.zry)'):
             item = ZiroomItem()
+            item['url'] = response.urljoin(room.css('.txt h3 a::attr(href)').extract_first())
             item['title'] = room.css('.txt h3 a::text').extract_first().strip()
             item['location'] = room.css('.txt h4 a::text').extract_first().strip()
 

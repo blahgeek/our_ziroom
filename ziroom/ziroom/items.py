@@ -17,6 +17,7 @@ import scrapy
 
 
 class ZiroomItem(scrapy.Item):
+    url = scrapy.item.Field()
     title = scrapy.item.Field()
     location = scrapy.item.Field()
     area = scrapy.item.Field()
