@@ -91,7 +91,7 @@ if __name__ == '__main__':
         data = filter(lambda x: x.get('area', 0) <= args.max_area)
     if args.tag:
         for tag in args.tag:
-            data = filter(lambda x: tag in x.get('tags', []), data)
+            data = filter(lambda x,tag=tag: tag in x.get('tags', []), data)
 
     data = list(data)
     logging.info("{} left before distance filtering".format(len(data)))
