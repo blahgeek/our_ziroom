@@ -4,7 +4,7 @@
 # @Author: BlahGeek
 # @Date:   2016-06-05
 # @Last Modified by:   BlahGeek
-# @Last Modified time: 2016-06-05
+# @Last Modified time: 2016-06-06
 
 # -*- coding: utf-8 -*-
 
@@ -26,3 +26,6 @@ class ZiroomItem(scrapy.Item):
     subway_info = scrapy.item.Field()
     tags = scrapy.item.Field()
     price = scrapy.item.Field()
+
+    lon = scrapy.item.Field()
+    lat = scrapy.item.Field()
