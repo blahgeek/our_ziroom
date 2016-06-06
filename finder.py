@@ -99,7 +99,7 @@ if __name__ == '__main__':
     if args.distance:
         distance_reqs = [{
             'origin': x[0],
-            'max_time': float(x[1]) * 60, # seconds
+            'max_time': float(x[1]), # minutes
             'mode': 'transit' if len(x) <= 2 else x[2]
         } for x in map(lambda x: x.split(','), args.distance)]
     else:
@@ -124,7 +124,7 @@ if __name__ == '__main__':
             except:
                 logging.exception('Error querying distance')
                 t = 0
-            d['distance'].append(t)
+            d['distance'].append(t / 60)  # minutes
         querier.save_cache()
 
         data = [x for x in data if x['distance'][-1] <= req['max_time']]

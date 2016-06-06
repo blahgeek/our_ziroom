@@ -29,3 +29,10 @@ class ZiroomItem(scrapy.Item):
 
     lon = scrapy.item.Field()
     lat = scrapy.item.Field()
+
+
+class ZiroomSubletItem(ZiroomItem):
+    sublet_person = scrapy.item.Field()
+    sublet_contact = scrapy.item.Field()
+    sublet_description = scrapy.item.Field()
+    lease_date = scrapy.item.Field()

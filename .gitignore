@@ -123,3 +123,4 @@ ENV/
 
 *.bak
 *.bdcache
+*.json

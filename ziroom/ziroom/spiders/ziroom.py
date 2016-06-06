@@ -50,4 +50,4 @@ class ZiroomSpider(scrapy.Spider):
         item['lon'] = response.css('#mapsearchText::attr(data-lng)').extract_first()
         item['lat'] = response.css('#mapsearchText::attr(data-lat)').extract_first()
 
-        yield item
+        return item
