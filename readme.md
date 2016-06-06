@@ -10,6 +10,7 @@
 cd ziroom
 # (optional) rm -rf .scrapy/httpcache
 scrapy crawl ziroom -o data.json
+scrapy crawl ziroom_sublet -o data_sublet.json
 
 cd ..
 python3 finder.py \
