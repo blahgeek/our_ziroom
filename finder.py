@@ -67,9 +67,10 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
 
     parser = argparse.ArgumentParser(description='Ziroom finder')
+    parser.add_argument('--min-price', type=float, help='Min price')
     parser.add_argument('--max-price', type=float, help='Max price')
     parser.add_argument('--min-area', type=float, help='Min area (m^2)')
-    parser.add_argument('--max-area', type=float, help='Min area (m^2)')
+    parser.add_argument('--max-area', type=float, help='Max area (m^2)')
     parser.add_argument('--tag', action='append', help='Required tags')
     parser.add_argument('--distance', action='append', help='Distance requirement. \n' +
                         'Syntax: --distance LOC,minutes[,mode]\n' +
@@ -83,12 +84,14 @@ if __name__ == '__main__':
     with open(args.data) as f:
         data = json.load(f)
 
+    if args.min_price is not None:
+        data = filter(lambda x: x.get('price', 1e6) >= args.min_price, data)
     if args.max_price is not None:
         data = filter(lambda x: x.get('price', 0) <= args.max_price, data)
     if args.min_area is not None:
-        data = filter(lambda x: x.get('area', 1e6) >= args.min_area)
+        data = filter(lambda x: x.get('area', 1e6) >= args.min_area, data)
     if args.max_area is not None:
-        data = filter(lambda x: x.get('area', 0) <= args.max_area)
+        data = filter(lambda x: x.get('area', 0) <= args.max_area, data)
     if args.tag:
         for tag in args.tag:
             data = filter(lambda x,tag=tag: tag in x.get('tags', []), data)
